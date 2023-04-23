@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import GraphQLProvider from "graphql/provider";
 import QueryParamsProvider from "queryParams/provider";
 import ThemeProvider from "theme/provider";
 
@@ -12,7 +13,9 @@ const Providers: React.FC<Props> = ({ children }) => {
   return (
     <BrowserRouter>
       <QueryParamsProvider>
-        <ThemeProvider>{children}</ThemeProvider>
+        <GraphQLProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </GraphQLProvider>
       </QueryParamsProvider>
     </BrowserRouter>
   );

@@ -1,6 +1,8 @@
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
 import * as React from "react";
 
+import type {} from "@mui/x-data-grid/themeAugmentation";
+
 import theme from "./index";
 
 type Props = {
