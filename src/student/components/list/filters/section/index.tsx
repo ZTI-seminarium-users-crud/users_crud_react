@@ -4,15 +4,15 @@ import { useFormContext, useWatch } from "react-hook-form";
 
 import FormCheckbox from "components/form/checkbox";
 
-import { FilterValue } from "../types";
+import { StudentListFilterValue } from "../types";
 
 type Props = {
   name: string;
   display_name: string;
-  values: Array<FilterValue>;
+  values: Array<StudentListFilterValue>;
 };
 
-const UserFiltersSection: React.FC<Props> = ({
+const StudentListFiltersSection: React.FC<Props> = ({
   name,
   display_name,
   values,
@@ -48,4 +48,4 @@ const UserFiltersSection: React.FC<Props> = ({
   );
 };
 
-export default UserFiltersSection;
+export default StudentListFiltersSection;

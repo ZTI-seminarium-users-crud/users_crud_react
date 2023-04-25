@@ -1,19 +1,15 @@
-import { z } from "zod";
-
-import { UserSchema } from "./schema";
-
-export enum UserSpecialization {
+export enum StudentSpecialization {
   IT = "INFORMATYKA",
   PHYS = "FIZYKA",
   PHYSMED = "FIZMED",
 }
 
-export enum UserDegree {
+export enum StudentDegree {
   FIRST = "1",
   SECOND = "2",
 }
 
-export enum UserSemester {
+export enum StudentSemester {
   FIRST = "1",
   SECOND = "2",
   THIRD = "3",
@@ -22,5 +18,3 @@ export enum UserSemester {
   SIXTH = "6",
   SEVENTH = "7",
 }
-
-export type User = z.infer<typeof UserSchema>;

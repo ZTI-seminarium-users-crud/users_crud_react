@@ -1,20 +1,26 @@
 import { useEffect } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 
-import { UserFilterConfig } from "./const";
-import UserFiltersSection from "./section";
-import { FilterFormValues } from "./types";
-import { getFilterFormInitialValues, useFilterQueryParams } from "./utils";
+import { StudentListFilterConfig } from "./const";
+import StudentFiltersSection from "./section";
+import { StudentListFilterFormValues } from "./types";
+import {
+  getStudentListFilterFormInitialValues,
+  useStudentListFilterQueryParams,
+} from "./utils";
 
-const UserFilters = () => {
-  const [queryParams, setQueryParams] = useFilterQueryParams();
+const StudentListFilters = () => {
+  const [queryParams, setQueryParams] = useStudentListFilterQueryParams();
   const methods = useForm({
-    defaultValues: getFilterFormInitialValues(UserFilterConfig, queryParams),
+    defaultValues: getStudentListFilterFormInitialValues(
+      StudentListFilterConfig,
+      queryParams
+    ),
   });
 
   const { control } = methods;
 
-  const watchAll = useWatch<FilterFormValues>({ control });
+  const watchAll = useWatch<StudentListFilterFormValues>({ control });
 
   useEffect(() => {
     setQueryParams(
@@ -36,12 +42,12 @@ const UserFilters = () => {
   return (
     <FormProvider {...methods}>
       <form>
-        {UserFilterConfig.map((section) => {
-          return <UserFiltersSection key={section.name} {...section} />;
-        })}
+        {StudentListFilterConfig.map((section) => (
+          <StudentFiltersSection key={section.name} {...section} />
+        ))}
       </form>
     </FormProvider>
   );
 };
 
-export default UserFilters;
+export default StudentListFilters;

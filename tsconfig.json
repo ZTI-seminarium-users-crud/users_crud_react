@@ -23,5 +23,6 @@
     "forceConsistentCasingInFileNames": true,
   },
   "include": ["src"],
+  "exclude": ["**/*.graphql"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

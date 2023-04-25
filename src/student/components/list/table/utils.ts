@@ -2,7 +2,7 @@ import { GridPaginationModel } from "@mui/x-data-grid";
 import { useEffect } from "react";
 import { NumberParam, useQueryParams, withDefault } from "use-query-params";
 
-export const useTablePagination = () => {
+export const useStudentListTablePagination = () => {
   const [tableParams, setTableParams] = useQueryParams({
     page: withDefault(NumberParam, 1),
     limit: withDefault(NumberParam, 10),

@@ -1,0 +1,73 @@
+mutation createStudent(
+  $first_name: String!
+  $last_name: String!
+  $specialization: String!
+  $degree: String!
+  $semester: String!
+) {
+  createStudent(
+    first_name: $first_name
+    last_name: $last_name
+    specialization: $specialization
+    degree: $degree
+    semester: $semester
+  ) {
+    __typename
+    success
+    errors
+    students {
+      id
+      first_name
+      last_name
+      specialization
+      degree
+      semester
+    }
+  }
+}
+
+mutation updateStudent(
+  $id: ID!
+  $first_name: String
+  $last_name: String
+  $specialization: String
+  $degree: String
+  $semester: String
+) {
+  updateStudent(
+    id: $id
+    first_name: $first_name
+    last_name: $last_name
+    specialization: $specialization
+    degree: $degree
+    semester: $semester
+  ) {
+    __typename
+    success
+    errors
+    students {
+      id
+      first_name
+      last_name
+      specialization
+      degree
+      semester
+    }
+  }
+}
+
+mutation deleteStudent($id: ID) {
+  deleteStudent(id: $id) {
+    __typename
+    success
+    errors
+    students {
+      id
+      first_name
+      last_name
+      specialization
+      degree
+      semester
+    }
+  }
+}

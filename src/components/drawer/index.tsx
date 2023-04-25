@@ -1,4 +1,4 @@
-import { Drawer } from "@mui/material";
+import { Drawer as MuiDrawer } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,15 +6,15 @@ type Props = {
   children: React.ReactNode;
 };
 
-const AppDrawer: React.FC<Props> = ({ children }) => {
+const Drawer: React.FC<Props> = ({ children }) => {
   return <StyledDrawer>{children}</StyledDrawer>;
 };
 
-export default AppDrawer;
+export default Drawer;
 
 const drawerWidth = 240;
 
-const StyledDrawer = styled(Drawer).attrs(() => ({
+const StyledDrawer = styled(MuiDrawer).attrs(() => ({
   variant: "permanent",
   anchor: "left",
 }))`

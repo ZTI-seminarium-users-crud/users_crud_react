@@ -1,18 +1,17 @@
 import { DataGrid } from "@mui/x-data-grid";
 
-import { useListStudentsQuery } from "graphql/graphql";
+import { useReadStudentsQuery } from "../../../graphql/query";
+import { useStudentListFilterQueryParams } from "../filters/utils";
 
-import { useFilterQueryParams } from "../filters/utils";
+import columns from "./columns";
+import { useStudentListTablePagination } from "./utils";
 
-import { columns } from "./columns";
-import { useTablePagination } from "./utils";
-
-const Table = () => {
+const StudentListTable = () => {
   const { limit, offset, paginationModel, handlePaginationModelChange } =
-    useTablePagination();
-  const [filterParams] = useFilterQueryParams();
+    useStudentListTablePagination();
+  const [filterParams] = useStudentListFilterQueryParams();
 
-  const { loading, error, data } = useListStudentsQuery({
+  const { loading, error, data } = useReadStudentsQuery({
     variables: {
       limit,
       offset,
@@ -26,7 +25,7 @@ const Table = () => {
 
   return (
     <DataGrid
-      rows={data.listStudents.students ?? []}
+      rows={data.readStudents.students ?? []}
       loading={loading}
       columns={columns}
       disableColumnFilter={true}
@@ -37,9 +36,9 @@ const Table = () => {
       paginationModel={paginationModel}
       onPaginationModelChange={handlePaginationModelChange}
       pageSizeOptions={[10, 20, 50]}
-      rowCount={data.listStudents.total_count}
+      rowCount={data.readStudents.total_count}
     />
   );
 };
 
-export default Table;
+export default StudentListTable;

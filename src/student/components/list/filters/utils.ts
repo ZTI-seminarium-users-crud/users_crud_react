@@ -1,10 +1,14 @@
 import { ArrayParam, useQueryParams } from "use-query-params";
 
-import { UserFilterConfig } from "./const";
-import { FilterFields, FilterFormValues, FilterValue } from "./types";
+import { StudentListFilterConfig } from "./const";
+import {
+  StudentListFilterFields,
+  StudentListFilterFormValues,
+  StudentListFilterValue,
+} from "./types";
 
-export const getFilterFormInitialValues = (
-  filters: FilterFields,
+export const getStudentListFilterFormInitialValues = (
+  filters: StudentListFilterFields,
   queryParams?: Record<string, string[] | undefined>
 ) =>
   filters.reduce(
@@ -21,17 +25,19 @@ export const getFilterFormInitialValues = (
       ),
     }),
     {}
-  ) satisfies FilterFormValues;
+  ) satisfies StudentListFilterFormValues;
 
-export const getFilterValuesFromRecord = (options: Record<string, string>) =>
+export const getStudentListFilterValuesFromRecord = (
+  options: Record<string, string>
+) =>
   Object.entries(options).map(([key, value]) => ({
     name: key,
     value,
-  })) satisfies FilterValue[];
+  })) satisfies StudentListFilterValue[];
 
-export const useFilterQueryParams = () =>
+export const useStudentListFilterQueryParams = () =>
   useQueryParams(
-    UserFilterConfig.reduce(
+    StudentListFilterConfig.reduce(
       (queryParams, section) => ({
         ...queryParams,
         [section.name]: ArrayParam,
