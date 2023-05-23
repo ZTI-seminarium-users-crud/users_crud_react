@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
+import styled from "styled-components";
 
 import { StudentListFilterConfig } from "./const";
 import StudentFiltersSection from "./section";
 import { StudentListFilterFormValues } from "./types";
 import {
   getStudentListFilterFormInitialValues,
-  useStudentListFilterQueryParams,
+  useStudentListFiltersQueryParams,
 } from "./utils";
 
 const StudentListFilters = () => {
-  const [queryParams, setQueryParams] = useStudentListFilterQueryParams();
+  const [queryParams, setQueryParams] = useStudentListFiltersQueryParams();
   const methods = useForm({
     defaultValues: getStudentListFilterFormInitialValues(
       StudentListFilterConfig,
@@ -41,13 +42,17 @@ const StudentListFilters = () => {
 
   return (
     <FormProvider {...methods}>
-      <form>
+      <Form>
         {StudentListFilterConfig.map((section) => (
           <StudentFiltersSection key={section.name} {...section} />
         ))}
-      </form>
+      </Form>
     </FormProvider>
   );
 };
 
 export default StudentListFilters;
+
+const Form = styled.form`
+  padding: 1rem;
+`;

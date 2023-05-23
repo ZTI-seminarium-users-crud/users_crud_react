@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "http://127.0.0.1:5000/graphql",
+  uri: "https://zti-sem-backend.onrender.com/graphql",
   cache: new InMemoryCache(),
 });
 

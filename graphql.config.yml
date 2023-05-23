@@ -1,2 +1,2 @@
-schema: http://127.0.0.1:5000/graphql
+schema: https://zti-sem-backend.onrender.com
 documents: '**/*.graphql'

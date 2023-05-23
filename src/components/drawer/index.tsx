@@ -12,7 +12,7 @@ const Drawer: React.FC<Props> = ({ children }) => {
 
 export default Drawer;
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const StyledDrawer = styled(MuiDrawer).attrs(() => ({
   variant: "permanent",

@@ -2,18 +2,23 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { IconButton } from "@mui/material";
 import { GridRenderCellParams } from "@mui/x-data-grid";
+import React from "react";
 
 import Routes from "routes";
 import { useNavigateAndKeepSearchParams } from "routes/utils";
 
-import { Student } from "../../../graphql/types";
-import { useDeleteStudentService } from "../../../service";
+import { useDeleteStudent } from "../../../mutation.ts";
+import { Student } from "../../../types.ts";
 
-export const StudentListActionColumnRenderer = (
-  params: GridRenderCellParams<Student>
-) => {
+type Props = {
+  params: GridRenderCellParams<Student>;
+};
+
+export const StudentListActionColumnRenderer: React.FC<Props> = ({
+  params,
+}) => {
   const navigate = useNavigateAndKeepSearchParams();
-  const { handleDelete: deleteStudent } = useDeleteStudentService();
+  const { handleDelete: deleteStudent } = useDeleteStudent();
 
   const handleDelete = () => {
     deleteStudent(params.id.toString());

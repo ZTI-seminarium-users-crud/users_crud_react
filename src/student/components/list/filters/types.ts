@@ -1,6 +1,6 @@
 export type StudentListFilterValue = {
   name: string;
-  value: string;
+  value: string | number;
 };
 
 export type StudentListFilterSection = {

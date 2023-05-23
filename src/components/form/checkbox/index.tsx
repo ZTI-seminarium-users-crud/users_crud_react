@@ -4,7 +4,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 type Props = {
   name: string;
-  label: string;
+  label: string | number;
 };
 
 const FormCheckbox: React.FC<Props> = ({ name, label }) => {

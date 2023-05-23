@@ -1,4 +1,7 @@
-import { ArrayParam, useQueryParams } from "use-query-params";
+import { QueryParamConfig } from "serialize-query-params/src/types";
+import { ArrayParam, useQueryParams, withDefault } from "use-query-params";
+
+import { ReadStudentsQueryVariables } from "../../../query.ts";
 
 import { StudentListFilterConfig } from "./const";
 import {
@@ -28,20 +31,56 @@ export const getStudentListFilterFormInitialValues = (
   ) satisfies StudentListFilterFormValues;
 
 export const getStudentListFilterValuesFromRecord = (
-  options: Record<string, string>
+  options: Record<string, string | number>
 ) =>
   Object.entries(options).map(([key, value]) => ({
     name: key,
     value,
   })) satisfies StudentListFilterValue[];
 
-export const useStudentListFilterQueryParams = () =>
-  useQueryParams(
+export const useStudentListFiltersQueryParams = () =>
+  useQueryParams<
+    {
+      columns: string;
+      specialization: string;
+      degree: string;
+      semester: string;
+    },
+    {
+      columns: QueryParamConfig<string[] | undefined>;
+      specialization: QueryParamConfig<
+        ReadStudentsQueryVariables["specialization"]
+      >;
+      degree: QueryParamConfig<ReadStudentsQueryVariables["degree"]>;
+      semester: QueryParamConfig<ReadStudentsQueryVariables["semester"]>;
+    }
+  >(
     StudentListFilterConfig.reduce(
       (queryParams, section) => ({
         ...queryParams,
-        [section.name]: ArrayParam,
+        [section.name]:
+          section.name === "columns"
+            ? withDefault(ArrayParam, [
+                "first_name",
+                "last_name",
+                "specialization",
+                "degree",
+                "semester",
+                "is_male",
+                "average_grade",
+                "hair_color",
+                "height",
+                "weight",
+                "age",
+              ])
+            : ArrayParam,
       }),
-      {}
-    )
+      {
+        columns: "",
+        specialization: "",
+        degree: "",
+        semester: "",
+      }
+    ),
+    { removeDefaultsFromUrl: true }
   );

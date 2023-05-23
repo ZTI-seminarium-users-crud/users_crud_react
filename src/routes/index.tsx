@@ -25,11 +25,11 @@ export const routeObjects = [
       },
       {
         path: "add",
-        element: <StudentPage />,
+        element: <StudentPage open />,
       },
       {
         path: ":id",
-        element: <StudentPage />,
+        element: <StudentPage open />,
       },
     ],
   },
