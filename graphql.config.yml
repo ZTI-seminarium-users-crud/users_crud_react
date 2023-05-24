@@ -1,2 +1,2 @@
-schema: https://zti-sem-backend.onrender.com
+schema: https://zti-sem-backend-graphql.onrender.com
 documents: '**/*.graphql'
